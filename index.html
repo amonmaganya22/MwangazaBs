@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="sw" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mwangaza Business Solutions | Portal Rasmi ya Usajili</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0F172A',     /* Dark Corporate Slate */
+                            subtle: '#1E293B',   /* Card Background Dark */
+                            blue: '#2563EB',     /* Primary Action Blue */
+                            gold: '#D97706',     /* Mwangaza Soft Gold Accent */
+                            lightBg: '#F8FAFC',  /* Very Clean Light Grey */
+                            border: '#E2E8F0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+        }
+        .active-tab {
+            border-bottom: 3px solid #D97706 !important;
+            color: #0F172A !important;
+            font-weight: 800 !important;
+        }
+    </style>
+</head>
+<body class="bg-brand-lightBg text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/255768940971?text=Habari%20Mwangaza%20Business%20Solutions,%20nahitaji%20msaada%20wa%20usajili." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- TOP CORPORATE CONTACT BAR -->
+    <div class="bg-brand-navy text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-6 text-slate-400">
+                <span><i class="fa-solid fa-location-dot text-brand-gold mr-1.5"></i> Dar es Salaam, Tanzania</span>
+                <span><i class="fa-solid fa-clock text-brand-gold mr-1.5"></i> <span data-lang-sw="Lango la Usajili Masaa 24/7" data-lang-en="24/7 Registration Portal">Lango la Usajili Masaa 24/7</span></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/255768940971?text=Habari%20Mwangaza%20Business%20Solutions" target="_blank" class="text-slate-200 hover:text-brand-gold transition font-medium flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> 0768 940 971
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION BAR -->
+    <nav class="sticky top-0 z-40 bg-white border-b border-brand-border shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 bg-brand-navy rounded-xl flex items-center justify-center text-brand-gold font-bold text-xl shadow-inner">
+                    <i class="fa-solid fa-sun"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-brand-navy block leading-none">MWANGAZA</span>
+                    <span class="text-[10px] text-slate-500 tracking-widest uppercase font-bold">BUSINESS SOLUTIONS</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#ada-brela" class="hover:text-brand-navy transition" data-lang-sw="Ada za BRELA" data-lang-en="BRELA Fees">Ada za BRELA</a>
+                <a href="#fomu-huduma" class="hover:text-brand-navy transition" data-lang-sw="Fomu ya Usajili" data-lang-en="Registration Form">Fomu ya Usajili</a>
+                <a href="#mawasiliano" class="hover:text-brand-navy transition" data-lang-sw="Mawasiliano" data-lang-en="Contact Us">Mawasiliano</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <!-- LANGUAGE SWITCHER TOGGLE -->
+                <div class="bg-slate-100 p-1 rounded-xl flex items-center border border-slate-200 text-xs font-bold">
+                    <button onclick="toggleLanguage('sw')" id="btn-lang-sw" class="px-2.5 py-1 rounded-lg bg-brand-navy text-white transition">SW</button>
+                    <button onclick="toggleLanguage('en')" id="btn-lang-en" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-brand-navy transition">EN</button>
+                </div>
+
+                <a href="#fomu-huduma" class="bg-brand-navy hover:bg-slate-800 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-sm text-xs sm:text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-file-signature text-brand-gold"></i>
+                    <span data-lang-sw="Wasilisha Taarifa" data-lang-en="Submit Details">Wasilisha Taarifa</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="bg-white border-b border-brand-border py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 text-amber-900 border border-amber-200 text-xs font-bold rounded-lg uppercase tracking-wider">
+                        <i class="fa-solid fa-shield-halved text-brand-gold"></i>
+                        <span data-lang-sw="Huduma Rasmi za Usajili wa Biashara" data-lang-en="Official Business Registration Services">Huduma Rasmi za Usajili wa Biashara</span>
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy leading-tight tracking-tight" data-lang-sw="Rasimisha Biashara Yako Kisheria kwa Urahisi na Uhakika" data-lang-en="Register Your Business Legally with Ease and Certainty">
+                        Rasimisha Biashara Yako Kisheria kwa Urahisi na Uhakika
+                    </h1>
+                    <p class="text-slate-600 text-base leading-relaxed" data-lang-sw="Tusaidie kukamilisha usajili wa Makampuni (BRELA), Majina ya Biashara, Taasisi (NGO), Microfinance (BOT), Leseni pamoja na TIN bila ucheleweshaji." data-lang-en="Let us assist you in completing registrations for Companies (BRELA), Business Names, NGOs, Microfinance (BOT), Licenses, and TIN without delay.">
+                        Tusaidie kukamilisha usajili wa Makampuni (BRELA), Majina ya Biashara, Taasisi (NGO), Microfinance (BOT), Leseni pamoja na TIN bila ucheleweshaji.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-4">
+                        <a href="#fomu-huduma" class="px-6 py-3.5 bg-brand-navy hover:bg-slate-800 text-white font-bold rounded-xl shadow-md transition flex items-center space-x-2 text-sm">
+                            <span data-lang-sw="Anza Kujaza Fomu Sasa" data-lang-en="Fill Form Now">Anza Kujaza Fomu Sasa</span>
+                            <i class="fa-solid fa-arrow-down text-brand-gold"></i>
+                        </a>
+                        <a href="#ada-brela" class="px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition flex items-center space-x-2 text-sm">
+                            <i class="fa-solid fa-calculator text-slate-500"></i>
+                            <span data-lang-sw="Angalia Ada za Serikali" data-lang-en="Check Government Fees">Angalia Ada za Serikali</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-50 border border-brand-border p-6 rounded-2xl custom-card-shadow space-y-4">
+                        <h3 class="text-base font-bold text-brand-navy flex items-center gap-2 border-b border-slate-200 pb-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                            <span data-lang-sw="Kwanini Mwangaza Business Solutions?" data-lang-en="Why Choose Mwangaza Business Solutions?">Kwanini Mwangaza Business Solutions?</span>
+                        </h3>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-check text-brand-gold mt-1"></i>
+                                <span data-lang-sw="Uhasibu na Sheria: Kazi zako zinasimamiwa na wataalamu waliobobea." data-lang-en="Accounting & Legal: Managed by seasoned experts."><strong>Uhasibu na Sheria:</strong> Kazi zako zinasimamiwa na wataalamu waliobobea.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-check text-brand-gold mt-1"></i>
+                                <span data-lang-sw="Urahisi wa Mfumo: Tuma taarifa zako kwa usalama bila haja ya kutoka ofisini au nyumbani." data-lang-en="Seamless Portal: Submit your details securely from anywhere."><strong>Urahisi wa Mfumo:</strong> Tuma taarifa zako kwa usalama bila haja ya kutoka ofisini au nyumbani.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-check text-brand-gold mt-1"></i>
+                                <span data-lang-sw="Usaidizi wa Verification: Tunakusaidia kukamilisha verification ya NIDA/OTP kwa ufasaha." data-lang-en="Verification Support: Assistance with NIDA/OTP verification."><strong>Usaidizi wa Verification:</strong> Tunakusaidia kukamilisha verification ya NIDA/OTP kwa ufasaha.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: ACCURATE BRELA GOVERNMENT FEES CALCULATOR -->
+    <section id="ada-brela" class="py-14 bg-slate-50 border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy" data-lang-sw="Ada za Malipo ya Serikali (BRELA)" data-lang-en="Government Fee Structure (BRELA)">Ada za Malipo ya Serikali (BRELA)</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-2" data-lang-sw="Viwango rasmi vya ada za serikali katika usajili wa Kampuni kulingana na mtaji wako wa biashara:" data-lang-en="Official government fee rates for Company registration based on your share capital:">Viwango rasmi vya ada za serikali katika usajili wa Kampuni kulingana na mtaji wako wa biashara:</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Calculator Interactive Box -->
+                <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-brand-border custom-card-shadow space-y-5">
+                    <h3 class="font-bold text-brand-navy text-base flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-brand-gold"></i>
+                        <span data-lang-sw="Kikokotozi cha Ada ya Kampuni" data-lang-en="Company Fee Calculator">Kikokotozi cha Ada ya Kampuni</span>
+                    </h3>
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2" data-lang-sw="Chagua au Ingiza Mtaji wa Kampuni (Tsh):" data-lang-en="Enter Share Capital (Tsh):">Chagua au Ingiza Mtaji wa Kampuni (Tsh):</label>
+                        <input type="number" id="capitalInput" oninput="calculateBrelaFee()" placeholder="Mfano: 3000000" class="w-full p-3.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-navy outline-none">
+                    </div>
+
+                    <div class="bg-brand-navy text-white p-5 rounded-xl text-center space-y-1">
+                        <span class="text-[11px] uppercase font-bold text-slate-400 tracking-wider" data-lang-sw="Malipo ya Serikali (BRELA)" data-lang-en="Government Fee (BRELA)">Malipo ya Serikali (BRELA)</span>
+                        <div id="calculatedFeeDisplay" class="text-3xl font-extrabold text-brand-gold">Tsh 193,000/=</div>
+                        <p class="text-[11px] text-slate-300 pt-1" data-lang-sw="*Kiasi hiki ni malipo ya serikali pekee BRELA." data-lang-en="*This amount covers government BRELA fee only.">*Kiasi hiki ni malipo ya serikali pekee BRELA.</p>
+                    </div>
+
+                    <a href="#fomu-huduma" class="block text-center w-full py-3 bg-slate-100 hover:bg-slate-200 text-brand-navy font-bold rounded-xl transition text-xs" data-lang-sw="Endelea Kujaza Fomu ya Kampuni &rarr;" data-lang-en="Proceed to Registration Form &rarr;">
+                        Endelea Kujaza Fomu ya Kampuni &rarr;
+                    </a>
+                </div>
+
+                <!-- BRELA Fee Structure Table -->
+                <div class="lg:col-span-7 bg-white rounded-2xl border border-brand-border overflow-hidden custom-card-shadow">
+                    <div class="bg-brand-navy text-white px-6 py-4 font-bold text-sm flex justify-between items-center">
+                        <span data-lang-sw="Kiwango cha Mtaji (Tsh)" data-lang-en="Capital Bracket (Tsh)">Kiwango cha Mtaji (Tsh)</span>
+                        <span data-lang-sw="Ada ya Serikali (BRELA)" data-lang-en="Government Fee (BRELA)">Ada ya Serikali (BRELA)</span>
+                    </div>
+                    <div class="divide-y divide-slate-100 text-xs sm:text-sm">
+                        <div class="px-6 py-3.5 flex justify-between items-center hover:bg-slate-50">
+                            <span class="font-medium text-slate-700">Tsh 20,000 – Tsh 1,000,000/=</span>
+                            <span class="font-extrabold text-brand-navy">Tsh 193,000/=</span>
+                        </div>
+                        <div class="px-6 py-3.5 flex justify-between items-center hover:bg-slate-50">
+                            <span class="font-medium text-slate-700">Tsh 1,000,001 – Tsh 5,000,000/=</span>
+                            <span class="font-extrabold text-brand-navy">Tsh 273,000/=</span>
+                        </div>
+                        <div class="px-6 py-3.5 flex justify-between items-center hover:bg-slate-50">
+                            <span class="font-medium text-slate-700">Tsh 5,000,001 – Tsh 20,000,000/=</span>
+                            <span class="font-extrabold text-brand-navy">Tsh 332,200/=</span>
+                        </div>
+                        <div class="px-6 py-3.5 flex justify-between items-center hover:bg-slate-50">
+                            <span class="font-medium text-slate-700">Tsh 20,000,001 – Tsh 50,000,000/=</span>
+                            <span class="font-extrabold text-brand-navy">Tsh 362,200/=</span>
+                        </div>
+                        <div class="px-6 py-3.5 flex justify-between items-center bg-amber-50/50">
+                            <span class="font-medium text-slate-900" data-lang-sw="Zaidi ya Tsh 50,000,000/=" data-lang-en="Above Tsh 50,000,000/=">Zaidi ya Tsh 50,000,000/=</span>
+                            <span class="font-extrabold text-brand-navy">Tsh 512,200/=</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: COMPREHENSIVE SERVICE REGISTRATION FORM -->
+    <section id="fomu-huduma" class="py-14 bg-white flex-grow">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-gold" data-lang-sw="Fomu Rasmi ya Usajili" data-lang-en="Official Registration Form">Fomu Rasmi ya Usajili</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mt-1" data-lang-sw="Wasilisha Taarifa Zako Kiofisi" data-lang-en="Submit Your Details Formally">Wasilisha Taarifa Zako Kiofisi</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1" data-lang-sw="Chagua huduma unayohitaji kisha ujaze fomu kwa umakini. Taarifa hizi zitatumwa moja kwa moja kwetu." data-lang-en="Select the service you need and complete the details below accurately.">Chagua huduma unayohitaji kisha ujaze fomu kwa umakini. Taarifa hizi zitatumwa moja kwa moja kwetu.</p>
+            </div>
+
+            <!-- SERVICE SELECTOR TABS -->
+            <div class="bg-slate-100 p-1.5 rounded-2xl flex flex-wrap gap-1 mb-8 text-xs font-bold text-slate-600">
+                <button type="button" onclick="switchService('kampuni')" id="tab-kampuni" class="flex-1 py-3 px-3 rounded-xl transition text-center active-tab">
+                    <i class="fa-solid fa-building mr-1"></i> <span data-lang-sw="Kampuni (BRELA)" data-lang-en="Company (BRELA)">Kampuni (BRELA)</span>
+                </button>
+                <button type="button" onclick="switchService('biashara')" id="tab-biashara" class="flex-1 py-3 px-3 rounded-xl transition text-center">
+                    <i class="fa-solid fa-store mr-1"></i> <span data-lang-sw="Jina la Biashara" data-lang-en="Business Name">Jina la Biashara</span>
+                </button>
+                <button type="button" onclick="switchService('ngo')" id="tab-ngo" class="flex-1 py-3 px-3 rounded-xl transition text-center">
+                    <i class="fa-solid fa-users mr-1"></i> NGO (Tsh 600k)
+                </button>
+                <button type="button" onclick="switchService('microfinance')" id="tab-microfinance" class="flex-1 py-3 px-3 rounded-xl transition text-center">
+                    <i class="fa-solid fa-landmark mr-1"></i> Microfinance
+                </button>
+                <button type="button" onclick="switchService('leseni')" id="tab-leseni" class="flex-1 py-3 px-3 rounded-xl transition text-center">
+                    <i class="fa-solid fa-id-card mr-1"></i> <span data-lang-sw="Leseni & TIN" data-lang-en="License & TIN">Leseni & TIN</span>
+                </button>
+                <button type="button" onclick="switchService('website')" id="tab-website" class="flex-1 py-3 px-3 rounded-xl transition text-center">
+                    <i class="fa-solid fa-globe mr-1"></i> Website & Logo
+                </button>
+            </div>
+
+            <!-- MAIN FORM CONTAINER WITH FORMSPREE ENDPOINT -->
+            <form id="registrationForm" action="https://formspree.io/f/mbgdozow" method="POST" class="bg-slate-50 p-6 sm:p-10 rounded-2xl border border-brand-border custom-card-shadow space-y-8">
+                
+                <input type="hidden" name="Huduma_Inayoombwa" id="selectedServiceField" value="Usajili wa Kampuni">
+
+                <!-- 1. KAMPUNI FORM SECTION -->
+                <div id="form-kampuni" class="space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-base font-extrabold text-brand-navy" data-lang-sw="1. Usajili wa Kampuni (BRELA)" data-lang-en="1. Company Registration (BRELA)">1. Usajili wa Kampuni (BRELA)</h3>
+                        <p class="text-xs text-slate-500" data-lang-sw="Jaza taarifa za msingi za kampuni na madirekiti pamoja na wanahisa." data-lang-en="Fill company details, directors, and shareholders information.">Jaza taarifa za msingi za kampuni na madirekiti pamoja na wanahisa.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Jina la Kampuni Unalopendekeza *" data-lang-en="Proposed Company Name *">Jina la Kampuni Unalopendekeza *</label>
+                            <input type="text" name="Kampuni_Jina" required placeholder="Mfano: MWANGAZA LOGISTICS LTD" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Mtaji wa Kampuni (Tsh) *" data-lang-en="Share Capital (Tsh) *">Mtaji wa Kampuni (Tsh) *</label>
+                            <input type="number" name="Kampuni_Mtaji" required placeholder="Mfano: 5000000" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                    </div>
+
+                    <div class="text-xs">
+                        <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Shughuli za Kampuni *" data-lang-en="Company Business Objectives *">Shughuli za Kampuni *</label>
+                        <textarea name="Kampuni_Shughuli" rows="2" required placeholder="Eleza kwa ufupi shughuli kuu za biashara au huduma..." class="w-full p-3 border border-slate-300 rounded-xl bg-white"></textarea>
+                    </div>
+
+                    <div class="text-xs">
+                        <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Address ya Kampuni (Mkoa, Wilaya, Kata, Mtaa) *" data-lang-en="Company Address (Region, District, Ward, Street) *">Address ya Kampuni (Mkoa, Wilaya, Kata, Mtaa) *</label>
+                        <input type="text" name="Kampuni_Address" required placeholder="Mfano: Dar es Salaam, Kinondoni, Kijitonyama" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                    </div>
+
+                    <!-- Directors Information -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 space-y-4">
+                        <h4 class="font-extrabold text-xs text-brand-navy uppercase tracking-wider" data-lang-sw="Taarifa za Directors (Kuanzia Wawili)" data-lang-en="Directors Information (Minimum 2)">Taarifa za Directors (Kuanzia Wawili)</h4>
+                        
+                        <!-- Director 1 -->
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2 text-xs">
+                            <span class="font-bold text-brand-navy block" data-lang-sw="Director wa 1:" data-lang-en="Director 1:">Director wa 1:</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <input type="text" name="Director_1_Jina" required placeholder="Jina Kamili / Full Name" class="p-2.5 border rounded-lg bg-white">
+                                <input type="email" name="Director_1_Email" required placeholder="Barua Pepe / Email" class="p-2.5 border rounded-lg bg-white">
+                                <input type="text" name="Director_1_NIDA" required placeholder="Namba ya NIDA (NIN)" class="p-2.5 border rounded-lg bg-white">
+                                <input type="text" name="Director_1_TIN" placeholder="Namba ya TIN (Kama ipo)" class="p-2.5 border rounded-lg bg-white">
+                            </div>
+                        </div>
+
+                        <!-- Director 2 -->
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2 text-xs">
+                            <span class="font-bold text-brand-navy block" data-lang-sw="Director wa 2:" data-lang-en="Director 2:">Director wa 2:</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <input type="text" name="Director_2_Jina" required placeholder="Jina Kamili / Full Name" class="p-2.5 border rounded-lg bg-white">
+                                <input type="email" name="Director_2_Email" required placeholder="Barua Pepe / Email" class="p-2.5 border rounded-lg bg-white">
+                                <input type="text" name="Director_2_NIDA" required placeholder="Namba ya NIDA (NIN)" class="p-2.5 border rounded-lg bg-white">
+                                <input type="text" name="Director_2_TIN" placeholder="Namba ya TIN (Kama ipo)" class="p-2.5 border rounded-lg bg-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NIDA Verification Data -->
+                    <div class="p-5 bg-amber-50/60 rounded-xl border border-amber-200/80 space-y-3 text-xs text-slate-700">
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-circle-info text-amber-700 mt-0.5"></i>
+                            <div>
+                                <strong class="text-amber-900 block font-bold" data-lang-sw="Taarifa za Verification & OTP za NIDA kwa Madirektor Wote:" data-lang-en="NIDA Verification Details & Security Questions:">Taarifa za Verification & OTP za NIDA kwa Madirektor Wote:</strong>
+                                <p class="text-slate-600 mt-0.5" data-lang-sw="Director atapokea OTP kwa ajili ya kuverify NIDA. Kama hana namba hiyo, ajaze taarifa hizi kwa ajili ya verification ya NIDA:" data-lang-en="The director will receive an OTP for NIDA verification. Alternatively, provide these verification details:">
+                                    Director atapokea OTP kwa ajili ya kuverify NIDA. Kama hana namba hiyo, ajaze taarifa hizi kwa ajili ya verification ya NIDA:
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                            <input type="text" name="Verif_Mahali_Kuzaliwa" placeholder="1. Mahali pa kuzaliwa (Mkoa, Wilaya, Kata)" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Verif_Majina_Mama" placeholder="2. Majina matatu ya mama" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Verif_Makazi_Kudumu" placeholder="3. Makazi ya kudumu" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Verif_Mahali_Sajili_NIDA" placeholder="4. Mahali uliposajili NIDA" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Verif_Elimu_Msingi" placeholder="5. Elimu ya msingi (Shule & Mwaka)" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Verif_Shule_Ilipo" placeholder="6. Shule ilipo (Mkoa, Wilaya)" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Verif_Simu_NIDA" placeholder="7. Namba ya simu uliyosajilia NIDA" class="p-2.5 border rounded-lg bg-white col-span-1 sm:col-span-2">
+                        </div>
+                    </div>
+
+                    <!-- Shareholders Information -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 space-y-3 text-xs">
+                        <h4 class="font-extrabold text-brand-navy uppercase tracking-wider" data-lang-sw="Shareholders (Wanahisa)" data-lang-en="Shareholders Information">Shareholders (Wanahisa)</h4>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <input type="text" name="Shareholder_1_Jina" placeholder="Jina la Shareholder 1" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Shareholder_1_NIDA_Makazi" placeholder="NIDA & Makazi" class="p-2.5 border rounded-lg bg-white">
+                            <input type="number" name="Shareholder_1_Shares" placeholder="Idadi ya Shares" class="p-2.5 border rounded-lg bg-white">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <input type="text" name="Shareholder_2_Jina" placeholder="Jina la Shareholder 2" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Shareholder_2_NIDA_Makazi" placeholder="NIDA & Makazi" class="p-2.5 border rounded-lg bg-white">
+                            <input type="number" name="Shareholder_2_Shares" placeholder="Idadi ya Shares" class="p-2.5 border rounded-lg bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. JINA LA BIASHARA FORM SECTION -->
+                <div id="form-biashara" class="space-y-6 hidden">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-base font-extrabold text-brand-navy" data-lang-sw="2. Usajili wa Jina la Biashara" data-lang-en="2. Business Name Registration">2. Usajili wa Jina la Biashara</h3>
+                        <p class="text-xs text-slate-500" data-lang-sw="Jaza taarifa za biashara na mmiliki." data-lang-en="Provide business and owner details.">Jaza taarifa za biashara na mmiliki.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Jina la Biashara Unalopendekeza *" data-lang-en="Proposed Business Name *">Jina la Biashara Unalopendekeza *</label>
+                            <input type="text" name="Biashara_Jina" placeholder="Mfano: NEY BEAUTY & BOUTIQUE" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Eneo Biashara Ilipo *" data-lang-en="Business Location *">Eneo Biashara Ilipo *</label>
+                            <input type="text" name="Biashara_Eneo" placeholder="Mfano: Kinondoni, Mwenge" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                    </div>
+
+                    <div class="text-xs">
+                        <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Shughuli za Biashara *" data-lang-en="Business Activities *">Shughuli za Biashara *</label>
+                        <textarea name="Biashara_Shughuli" rows="2" placeholder="Shughuli utakazokuwa unafanya..." class="w-full p-3 border border-slate-300 rounded-xl bg-white"></textarea>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 space-y-3 text-xs">
+                        <h4 class="font-extrabold text-brand-navy uppercase tracking-wider" data-lang-sw="Taarifa za Mmiliki wa Biashara" data-lang-en="Business Owner Information">Taarifa za Mmiliki wa Biashara</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <input type="text" name="Mmiliki_Jina" placeholder="Jina Kamili / Full Name" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Mmiliki_NIDA" placeholder="Namba ya NIDA (NIN)" class="p-2.5 border rounded-lg bg-white">
+                            <input type="email" name="Mmiliki_Email" placeholder="Barua Pepe / Email" class="p-2.5 border rounded-lg bg-white">
+                            <input type="text" name="Mmiliki_Simu" placeholder="Namba ya Simu / Phone" class="p-2.5 border rounded-lg bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. NGO FORM SECTION -->
+                <div id="form-ngo" class="space-y-6 hidden">
+                    <div class="border-b border-slate-200 pb-3 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-base font-extrabold text-brand-navy" data-lang-sw="3. Usajili wa Taasisi / NGO" data-lang-en="3. NGO Registration">3. Usajili wa Taasisi / NGO</h3>
+                            <p class="text-xs text-slate-500" data-lang-sw="Gharama kamili ya Usajili ni Tsh 600,000/=" data-lang-en="Total Registration Fee: Tsh 600,000/=">Gharama kamili ya Usajili ni Tsh 600,000/=</p>
+                        </div>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-900 font-extrabold text-xs rounded-lg">Tsh 600,000/=</span>
+                    </div>
+
+                    <div class="text-xs space-y-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Jina la NGO / Taasisi *" data-lang-en="NGO Name *">Jina la NGO / Taasisi *</label>
+                            <input type="text" name="NGO_Jina" placeholder="Jina la Taasisi" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Dira, Mwelekeo na Malengo (Vision, Mission & Goals) *" data-lang-en="Vision, Mission & Goals *">Dira, Mwelekeo na Malengo (Vision, Mission & Goals) *</label>
+                            <textarea name="NGO_Objectives" rows="3" placeholder="Eleza Vision, Mission na Goals za Taasisi..." class="w-full p-3 border border-slate-300 rounded-xl bg-white"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 space-y-3 text-xs">
+                        <h4 class="font-extrabold text-brand-navy uppercase tracking-wider" data-lang-sw="Wanachama & Viongozi (Wanachama 5+, Viongozi 3)" data-lang-en="Members & Office Bearers (5+ Members, 3 Leaders)">Wanachama & Viongozi (Wanachama 5+, Viongozi 3)</h4>
+                        <textarea name="NGO_Wanachama_Viongozi" rows="4" placeholder="Orodhesha Wanachama 5 (Majina & NIDA) na Viongozi 3..." class="w-full p-3 border border-slate-300 rounded-xl bg-white"></textarea>
+                    </div>
+                </div>
+
+                <!-- 4. MICROFINANCE FORM SECTION -->
+                <div id="form-microfinance" class="space-y-6 hidden">
+                    <div class="border-b border-slate-200 pb-3 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-base font-extrabold text-brand-navy" data-lang-sw="4. Usajili wa Microfinance" data-lang-en="4. Microfinance Registration">4. Usajili wa Microfinance</h3>
+                            <p class="text-xs text-slate-500" data-lang-sw="Usajili kamili kuanzia BRELA mpaka Leseni ya BOT." data-lang-en="Full registration from BRELA to BOT Licensing.">Usajili kamili kuanzia BRELA mpaka Leseni ya BOT.</p>
+                        </div>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-900 font-extrabold text-xs rounded-lg">Tsh 1,800,000/=</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Jina la Microfinance *" data-lang-en="Microfinance Name *">Jina la Microfinance *</label>
+                            <input type="text" name="Micro_Jina" placeholder="Jina la Microfinance" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Mtaji wa Microfinance (Tsh) *" data-lang-en="Capital (Tsh) *">Mtaji wa Microfinance (Tsh) *</label>
+                            <input type="number" name="Micro_Mtaji" placeholder="Kiwango cha mtaji" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 space-y-3 text-xs">
+                        <h4 class="font-extrabold text-brand-navy uppercase tracking-wider" data-lang-sw="Madirektor (2+) na Shareholders" data-lang-en="Directors (2+) & Shareholders">Madirektor (2+) na Shareholders</h4>
+                        <textarea name="Micro_Directors_Shareholders" rows="4" placeholder="Orodhesha Madirektor na Wanahisa (Majina, NIDA, TIN, Email na Shares)..." class="w-full p-3 border border-slate-300 rounded-xl bg-white"></textarea>
+                    </div>
+                </div>
+
+                <!-- 5. LESENI & TIN FORM SECTION -->
+                <div id="form-leseni" class="space-y-6 hidden">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-base font-extrabold text-brand-navy" data-lang-sw="5. Leseni ya Biashara & TIN ya TRA" data-lang-en="5. Business License & TRA TIN">5. Leseni ya Biashara & TIN ya TRA</h3>
+                        <p class="text-xs text-slate-500" data-lang-sw="Jaza taarifa kupata Leseni au Namba ya TIN." data-lang-en="Fill details to obtain Business License or TRA TIN.">Jaza taarifa kupata Leseni au Namba ya TIN.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Namba ya NIDA (NIN) *" data-lang-en="NIDA Number (NIN) *">Namba ya NIDA (NIN) *</label>
+                            <input type="text" name="Leseni_NIDA" placeholder="Namba ya NIDA" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Namba ya Simu ya NIDA *" data-lang-en="NIDA Phone Number *">Namba ya Simu ya NIDA *</label>
+                            <input type="text" name="Leseni_Simu_NIDA" placeholder="Namba ya simu" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. WEBSITE & LOGO FORM SECTION -->
+                <div id="form-website" class="space-y-6 hidden">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-base font-extrabold text-brand-navy" data-lang-sw="6. Website & Logo Design" data-lang-en="6. Website & Logo Design">6. Website & Logo Design</h3>
+                        <p class="text-xs text-slate-500" data-lang-sw="Eleza mahitaji ya Website au Nembo." data-lang-en="Describe your Website or Logo design requirements.">Eleza mahitaji ya Website au Nembo.</p>
+                    </div>
+
+                    <div class="text-xs space-y-4">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Website ni kwa ajili ya Shughuli Gani? *" data-lang-en="Website Scope / Purpose *">Website ni kwa ajili ya Shughuli Gani? *</label>
+                            <textarea name="Website_Shughuli" rows="3" placeholder="Eleza aina ya biashara au huduma..." class="w-full p-3 border border-slate-300 rounded-xl bg-white"></textarea>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1" data-lang-sw="Maelezo ya Nembo / Logo Design *" data-lang-en="Logo Design Preferences *">Maelezo ya Nembo / Logo Design *</label>
+                            <textarea name="Logo_Maelezo" rows="2" placeholder="Rangi, maneno, au muonekano wa Logo..." class="w-full p-3 border border-slate-300 rounded-xl bg-white"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row gap-4">
+                    <button type="submit" class="flex-1 bg-brand-navy hover:bg-slate-800 text-white font-extrabold py-4 rounded-xl transition shadow-md flex items-center justify-center space-x-2 text-sm">
+                        <i class="fa-solid fa-paper-plane text-brand-gold"></i>
+                        <span data-lang-sw="Tuma Kwenye Email" data-lang-en="Send via Email">Tuma Kwenye Email</span>
+                    </button>
+                    <button type="button" onclick="generatePDF()" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-800 font-extrabold py-4 rounded-xl transition flex items-center justify-center space-x-2 text-sm">
+                        <i class="fa-solid fa-file-pdf text-red-600"></i>
+                        <span data-lang-sw="Pakua Taarifa Kama PDF" data-lang-en="Download Document PDF">Pakua Taarifa Kama PDF</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="mawasiliano" class="bg-brand-navy text-white py-12 border-t-4 border-brand-gold text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <div>
+                    <h3 class="text-lg font-extrabold text-brand-gold">MWANGAZA BUSINESS SOLUTIONS</h3>
+                    <p class="text-slate-400 mt-0.5" data-lang-sw="Tunakuwezesha Kukua Kisheria na Kibiashara" data-lang-en="Empowering Legitimate & Scalable Business Growth">Tunakuwezesha Kukua Kisheria na Kibiashara</p>
+                </div>
+                <div class="flex items-center space-x-6 text-slate-300 font-semibold">
+                    <a href="https://wa.me/255768940971?text=Habari%20Mwangaza%20Business%20Solutions" target="_blank" class="hover:text-brand-gold transition"><i class="fa-brands fa-whatsapp text-emerald-400 mr-1 text-sm"></i> 0768 940 971</a>
+                    <span><i class="fa-solid fa-envelope text-brand-gold mr-1"></i> Dar es Salaam, Tanzania</span>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-6 text-center text-slate-500 text-[11px]">
+                © 2026 Mwangaza Business Solutions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR LOGIC, LANGUAGE TOGGLE, AND PDF GENERATION -->
+    <script>
+        // Language Toggle Logic
+        let currentLang = 'sw';
+
+        function toggleLanguage(lang) {
+            currentLang = lang;
+            const swBtn = document.getElementById('btn-lang-sw');
+            const enBtn = document.getElementById('btn-lang-en');
+
+            if (lang === 'sw') {
+                swBtn.className = "px-2.5 py-1 rounded-lg bg-brand-navy text-white transition";
+                enBtn.className = "px-2.5 py-1 rounded-lg text-slate-600 hover:text-brand-navy transition";
+            } else {
+                enBtn.className = "px-2.5 py-1 rounded-lg bg-brand-navy text-white transition";
+                swBtn.className = "px-2.5 py-1 rounded-lg text-slate-600 hover:text-brand-navy transition";
+            }
+
+            document.querySelectorAll('[data-lang-sw]').forEach(el => {
+                const text = el.getAttribute(`data-lang-${lang}`);
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.innerText = text;
+                    }
+                }
+            });
+        }
+
+        // BRELA Fee Calculation Logic
+        function calculateBrelaFee() {
+            const capital = parseFloat(document.getElementById('capitalInput').value) || 0;
+            const display = document.getElementById('calculatedFeeDisplay');
+
+            if (capital <= 1000000) {
+                display.innerText = "Tsh 193,000/=";
+            } else if (capital <= 5000000) {
+                display.innerText = "Tsh 273,000/=";
+            } else if (capital <= 20000000) {
+                display.innerText = "Tsh 332,200/=";
+            } else if (capital <= 50000000) {
+                display.innerText = "Tsh 362,200/=";
+            } else {
+                display.innerText = "Tsh 512,200/=";
+            }
+        }
+
+        // Tab Switching Logic
+        function switchService(serviceKey) {
+            const services = ['kampuni', 'biashara', 'ngo', 'microfinance', 'leseni', 'website'];
+            
+            services.forEach(s => {
+                document.getElementById(`form-${s}`).classList.add('hidden');
+                document.getElementById(`tab-${s}`).classList.remove('active-tab');
+            });
+
+            document.getElementById(`form-${serviceKey}`).classList.remove('hidden');
+            document.getElementById(`tab-${serviceKey}`).classList.add('active-tab');
+
+            const hiddenField = document.getElementById('selectedServiceField');
+            const labels = {
+                kampuni: 'Usajili wa Kampuni (BRELA)',
+                biashara: 'Usajili wa Jina la Biashara',
+                ngo: 'Usajili wa NGO (Tsh 600,000)',
+                microfinance: 'Usajili wa Microfinance (BOT)',
+                leseni: 'Leseni ya Biashara & TIN',
+                website: 'Website & Logo Design'
+            };
+            hiddenField.value = labels[serviceKey] || serviceKey;
+        }
+
+        // Generate PDF Logic
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Header Banner
+            doc.setFillColor(15, 23, 42);
+            doc.rect(0, 0, 210, 30, 'F');
+
+            doc.setTextColor(217, 119, 6);
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "bold");
+            doc.text("MWANGAZA BUSINESS SOLUTIONS", 15, 15);
+
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(9);
+            doc.text("Hati Rasmi ya Maombi ya Usajili | WhatsApp/Simu: 0768 940 971", 15, 23);
+
+            // Document Title
+            doc.setTextColor(15, 23, 42);
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("TAARIFA ZILIZOWASILISHWA NA MTEJA", 15, 42);
+
+            doc.setDrawColor(217, 119, 6);
+            doc.setLineWidth(0.5);
+            doc.line(15, 45, 195, 45);
+
+            const form = document.getElementById('registrationForm');
+            const formData = new FormData(form);
+            let y = 55;
+
+            doc.setFontSize(9);
+            formData.forEach((value, key) => {
+                if (value.trim() !== "") {
+                    if (y > 270) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    doc.setFont("helvetica", "bold");
+                    const formattedKey = key.replace(/_/g, ' ') + ":";
+                    doc.text(formattedKey, 15, y);
+                    
+                    doc.setFont("helvetica", "normal");
+                    const splitText = doc.splitTextToSize(value, 115);
+                    doc.text(splitText, 75, y);
+                    
+                    y += (splitText.length * 5) + 3;
+                }
+            });
+
+            doc.save("Taarifa_Za_Usajili_Mwangaza.pdf");
+        }
+    </script>
+</body>
+</html>
